@@ -5,7 +5,7 @@ import { LayoutModule } from './layout/layout.module';
 
 @Component({
   selector: 'app-root',
-  imports: [LayoutModule],
+  imports: [LayoutModule, RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.less'
 })

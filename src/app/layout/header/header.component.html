@@ -23,5 +23,17 @@
   </ng-template>
 </ng-container>
 
-<span style="color: white; margin-right: 1rem" (click)="changeTheme('default')">default</span>
-<span style="color: white" (click)="changeTheme('dark')">dark</span>
+<nz-avatar
+  [nzSize]="45"
+  class="header-avatar"
+  nzSrc="../../../assets/images/S__12378299_0.jpg"
+  nz-dropdown
+  [nzDropdownMenu]="theme"
+></nz-avatar>
+
+<nz-dropdown-menu #theme="nzDropdownMenu">
+  <ul nz-menu nzSelectable>
+    <li nz-menu-item (click)="changeTheme('default')">default theme</li>
+    <li nz-menu-item (click)="changeTheme('dark')">dark theme</li>
+  </ul>
+</nz-dropdown-menu>
