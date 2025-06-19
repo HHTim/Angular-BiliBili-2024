@@ -8,6 +8,9 @@
     [nzDropdownMenu]="menu"
     *ngIf="item.list; else showTemplate"
     class="menu-title"
+    [routerLink]="['/wx-a-plan']"
+    routerLinkActive="router-link-active"
+    ro
   >
     {{ item.name }}
     <nz-icon nzType="caret-down" nzTheme="outline" />
