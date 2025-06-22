@@ -10,12 +10,12 @@ import { FormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideHttpClient } from '@angular/common/http';
 import { provideNzIcons } from 'ng-zorro-antd/icon';
-import { BarChartOutline } from '@ant-design/icons-angular/icons';
+import { BarChartOutline, CommentOutline, UsergroupDeleteOutline } from '@ant-design/icons-angular/icons';
 import { IconDefinition } from '@ant-design/icons-angular';
 
 registerLocaleData(zh);
 
-const icons: IconDefinition[] = [BarChartOutline];
+const icons: IconDefinition[] = [BarChartOutline, CommentOutline, UsergroupDeleteOutline];
 
 export const appConfig: ApplicationConfig = {
   providers: [

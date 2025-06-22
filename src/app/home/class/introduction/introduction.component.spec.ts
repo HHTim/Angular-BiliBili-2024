@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WxAPlanComponent } from './wx-a-plan.component';
+import { IntroductionComponent } from './introduction.component';
 
-describe('WxAPlanComponent', () => {
-  let component: WxAPlanComponent;
-  let fixture: ComponentFixture<WxAPlanComponent>;
+describe('IntroductionComponent', () => {
+  let component: IntroductionComponent;
+  let fixture: ComponentFixture<IntroductionComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [WxAPlanComponent]
+      imports: [IntroductionComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(WxAPlanComponent);
+    fixture = TestBed.createComponent(IntroductionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

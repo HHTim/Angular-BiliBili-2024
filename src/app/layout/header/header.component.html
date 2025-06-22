@@ -3,26 +3,52 @@
 </a>
 
 <ng-container *ngFor="let item of menuList">
+  <!-- 如果 item.list 存在 => 顯示 <a> 元素(有下拉選單) -->
+  <!-- 否則顯示 showTemplate 模板(普通連結) -->
   <a
     nz-dropdown
     [nzDropdownMenu]="menu"
     *ngIf="item.list; else showTemplate"
     class="menu-title"
-    [routerLink]="['/wx-a-plan']"
+    [routerLink]="item.path"
     routerLinkActive="router-link-active"
-    ro
   >
     {{ item.name }}
     <nz-icon nzType="caret-down" nzTheme="outline" />
   </a>
   <nz-dropdown-menu #menu="nzDropdownMenu">
     <ul nz-menu nzSelectable>
-      <li nz-menu-item *ngFor="let name of item.list">{{ name.name }}</li>
+      <li nz-menu-item *ngFor="let subItem of item.list">
+        <!-- 1. 透過 routerLink 跳轉頁面 -->
+        <!-- <a [routerLink]="subItem.path" routerLinkActive="router-link-active">
+          {{ subItem.name }}
+        </a> -->
+
+        <!-- 2. 透過 router.navigate 進行跳轉 -->
+        <a (click)="goToNextPage(subItem.path)">
+          {{ subItem.name }}
+        </a>
+
+        <!-- 3. 透過 routerLink 進行傳參跳轉 -->
+        <!-- <a
+          [routerLink]="subItem.path"
+          routerLinkActive="router-link-active"
+          [queryParams]="{ name: 'Tim', type: 'HandsomeBoy' }"
+        >
+          {{ subItem.name }}
+        </a> -->
+      </li>
     </ul>
   </nz-dropdown-menu>
 
   <ng-template #showTemplate>
-    <a class="menu-title">{{ item.name }}</a>
+    <a
+      class="menu-title"
+      [routerLink]="item.path"
+      routerLinkActive="router-link-active"
+      [routerLinkActiveOptions]="{ exact: item.path === '/' }"
+      >{{ item.name }}</a
+    >
   </ng-template>
 </ng-container>
 

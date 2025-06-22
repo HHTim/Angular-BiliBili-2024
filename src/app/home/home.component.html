@@ -1,1 +1,84 @@
-<p>home works!</p>
+<!--
+  為什麼 index 要加 $？
+  因為這是 Angular 的內建變數，使用 $ 前綴可以避免與其他變數衝突。
+
+  索引：0, 1, 2...
+  let i = $index;
+
+  是否第一個：true/false
+  let isFirst = $first;
+
+  是否最後一個：true/false
+  let isLast = $last;
+
+  是否偶數索引：true/false
+  let isEven = $even;
+
+  是否奇數索引：true/false
+  let isOdd = $odd;
+
+  總數量
+  let count = $count
+-->
+
+<!-- 跑馬燈 -->
+<nz-carousel nzAutoPlay style="height: 500px">
+  @for (item of list; track item; let i = $index) {
+  <div nz-carousel-content>
+    <img [src]="item.src" alt="" />
+  </div>
+  }
+</nz-carousel>
+
+<!-- 網校課程 -->
+<div class="home-content">
+  <h2 class="text-center">網校課程</h2>
+  <h4 class="text-center">精選網校課程，滿足你的學習興趣。</h4>
+  <div nz-row [nzGutter]="16">
+    <div nz-col class="gutter-row" [nzSpan]="20">
+      @for (item of courseList; track item; let i = $index) {
+      <button
+        nz-button
+        nzType="text"
+        [class]="i === selectIndex ? 'course-type' : ''"
+        (click)="handleSelect(i, item.children)"
+      >
+        {{ item.type }}
+      </button>
+      }
+    </div>
+    <div nz-col class="gutter-row" [nzSpan]="4">
+      <nz-segmented [nzOptions]="options" [(ngModel)]="index"></nz-segmented>
+    </div>
+  </div>
+
+  <div class="btn-wrapper" nz-flex [nzGap]="'middle'" nzWrap="wrap">
+    @for (course of courseInfoList; track course) {
+
+    <nz-card
+      nzHoverable
+      style="width: 264px"
+      [nzCover]="coverTemplate"
+      [nzActions]="[actionSetting, actionEdit]"
+    >
+      <nz-card-meta [nzTitle]="course.name"></nz-card-meta>
+    </nz-card>
+    <ng-template #coverTemplate>
+      <img [src]="course.img" />
+    </ng-template>
+    <ng-template #actionSetting>
+      <span nz-icon nzType="usergroup-delete" nzTheme="outline">
+        {{ course.count }}
+      </span>
+      <span nz-icon nzType="comment" nzTheme="outline">
+        {{ course.comment }}
+      </span>
+    </ng-template>
+    <ng-template #actionEdit>
+      <span [style.color]="course.isFree ? '#43bc60' : '#ed3e3e'">
+        {{ course.isFree ? "免費" : course.price + " 元" }}
+      </span>
+    </ng-template>
+    }
+  </div>
+</div>

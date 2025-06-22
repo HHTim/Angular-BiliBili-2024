@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ThemeService } from '../../services/theme.service';
+import { Router } from '@angular/router';
 
 interface menuInfo {
   name: string;
+  path: string;
   list?: menuInfo[];
 }
 
@@ -16,114 +18,88 @@ export class HeaderComponent implements OnInit {
 
   menuList: menuInfo[] = [
     {
-      name: '首頁'
+      name: '首頁',
+      path: '/'
     },
     {
       name: '全部課程',
+      path: '/class',
       list: [
         {
-          name: '所有課程'
+          name: '所有課程',
+          path: '/class'
         },
         {
-          name: '課程投票 - Unity'
+          name: '課程 A 計畫',
+          path: '/plan/1/introduction'
         },
         {
-          name: '課程投票 - Unreal (虛幻)'
+          name: '課程 B 計畫 - Unreal (虛幻)',
+          path: '/plan/2/introduction'
         }
       ]
     },
     {
       name: 'Unity',
+      path: '/unity',
       list: [
         {
-          name: 'Unity 全部課程'
+          name: 'Unity 全部課程',
+          path: '/unity/all'
         },
         {
-          name: 'Unity高薪就業班'
+          name: 'Unity高薪就業班',
+          path: '/unity/employment'
         },
         {
-          name: 'Unity A計劃（永久）'
+          name: 'Unity A計劃（永久）',
+          path: '/unity/plan-a/permanent'
         },
         {
-          name: 'Unity A計劃（一年）'
-        }
-      ]
-    },
-    {
-      name: 'Unreal (虛幻)',
-      list: [
-        {
-          name: 'Unreal 全部課程'
-        },
-        {
-          name: 'Unreal入門教程'
-        },
-        {
-          name: 'Unreal進階教程'
+          name: 'Unity A計劃（一年）',
+          path: '/unity/plan-a/annual'
         }
       ]
     },
     {
       name: 'Java',
+      path: '/java',
       list: [
         {
-          name: 'Java 全部課程'
+          name: 'Java 全部課程',
+          path: '/java/all'
         },
         {
-          name: 'JavaEE課程'
+          name: 'JavaEE課程',
+          path: '/java/javaee'
         },
         {
-          name: 'Java基礎入門'
+          name: 'Java基礎入門',
+          path: '/java/fundamentals'
         }
       ]
     },
     {
       name: 'Python',
+      path: '/python',
       list: [
         {
-          name: 'Python 全部課程'
+          name: 'Python 全部課程',
+          path: '/python/all'
         },
         {
-          name: 'Python基礎入門'
+          name: 'Python基礎入門',
+          path: '/python/fundamentals'
         },
         {
-          name: 'Python人工智能'
+          name: 'Python人工智能',
+          path: '/python/ai'
         }
       ]
     },
     {
-      name: '人工智能',
-      list: [
-        {
-          name: '所有人工智能課程'
-        },
-        {
-          name: '大語言模型開發'
-        },
-        {
-          name: '機器學習教程'
-        }
-      ]
-    },
-    {
-      name: '專題學習',
-      list: [
-        {
-          name: '遊戲開發'
-        },
-        {
-          name: '網絡通訊'
-        },
-        {
-          name: '前端開發'
-        },
-        {
-          name: '移動應用開發'
-        }
-      ]
-    },
-    {
-      name: '聯絡我們'
+      name: '聯絡我們',
+      path: '/contact'
     }
   ];
 
@@ -131,6 +107,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private themeService: ThemeService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -141,4 +118,8 @@ export class HeaderComponent implements OnInit {
     this.themeService.change();
   }
 
+
+  goToNextPage(path: string) {
+    this.router.navigate([path]);
+  }
 }

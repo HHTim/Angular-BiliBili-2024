@@ -18,3 +18,22 @@
   top: 10px;
 }
 
+.router-link-active {
+  color: #1890ff;
+  font-weight: 600;
+}
+
+.menu-title {
+  &.router-link-active {
+    color: #1890ff;
+    border-bottom: 2px solid #1890ff;
+  }
+}
+
+// 下拉選單中的 active 樣式
+.ant-dropdown-menu {
+  .router-link-active {
+    background-color: #e6f7ff;
+    color: #1890ff;
+  }
+}
