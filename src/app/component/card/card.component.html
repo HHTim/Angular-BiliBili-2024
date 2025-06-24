@@ -1,0 +1,24 @@
+ <nz-card
+      nzHoverable
+      style="width: 264px"
+      [nzCover]="coverTemplate"
+      [nzActions]="[actionSetting, actionEdit]"
+    >
+      <nz-card-meta [nzTitle]="courseObj.name"></nz-card-meta>
+    </nz-card>
+    <ng-template #coverTemplate>
+      <img [src]="courseObj.img" (click)="sendMessage()"/>
+    </ng-template>
+    <ng-template #actionSetting>
+      <span nz-icon nzType="usergroup-delete" nzTheme="outline">
+        {{ courseObj.count }}
+      </span>
+      <span nz-icon nzType="comment" nzTheme="outline">
+        {{ courseObj.comments }}
+      </span>
+    </ng-template>
+    <ng-template #actionEdit>
+      <span [style.color]="courseObj.isFree ? '#43bc60' : '#ed3e3e'">
+        {{ courseObj.isFree ? "免費" : courseObj.price + " 元" }}
+      </span>
+    </ng-template>

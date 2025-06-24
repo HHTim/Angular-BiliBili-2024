@@ -35,7 +35,7 @@
               }
             ],
             "styles": [
-              "src/styles.less",
+              "src/styles/default.less",
               {
                 "input": "src/styles/default.less",
                 "bundleName": "default",
