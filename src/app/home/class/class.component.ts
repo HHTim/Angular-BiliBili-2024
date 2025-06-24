@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { filter, map, Subject, takeUntil, tap } from 'rxjs';
+import { CountService } from '../../services/count.service';
 
 interface ClassInfo {
   name?: string;
@@ -21,7 +22,8 @@ export class ClassComponent implements OnInit, OnDestroy {
   classInfo: ClassInfo = {};
 
   constructor(
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private countService: CountService,
   ) { }
   ngOnInit(): void {
 
@@ -47,5 +49,9 @@ export class ClassComponent implements OnInit, OnDestroy {
     // ✅ 清理訂閱，防止記憶體洩漏
     this.destroy$.next();
     this.destroy$.complete();
+  }
+
+  addOne() {
+    this.countService.addCount();
   }
 }

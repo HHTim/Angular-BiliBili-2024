@@ -40,7 +40,7 @@
       <button
         nz-button
         nzType="text"
-        [class]="i === selectIndex ? 'course-type' : ''"
+        [class]="i === selectIndex ? 'course-type bg' : ''"
         (click)="handleSelect(i, item.children)"
       >
         {{ item.type }}
@@ -52,33 +52,17 @@
     </div>
   </div>
 
+  <button (click)="add()">Counter</button>
   <div class="btn-wrapper" nz-flex [nzGap]="'middle'" nzWrap="wrap">
     @for (course of courseInfoList; track course) {
-
-    <nz-card
-      nzHoverable
-      style="width: 264px"
-      [nzCover]="coverTemplate"
-      [nzActions]="[actionSetting, actionEdit]"
-    >
-      <nz-card-meta [nzTitle]="course.name"></nz-card-meta>
-    </nz-card>
-    <ng-template #coverTemplate>
-      <img [src]="course.img" />
-    </ng-template>
-    <ng-template #actionSetting>
-      <span nz-icon nzType="usergroup-delete" nzTheme="outline">
-        {{ course.count }}
-      </span>
-      <span nz-icon nzType="comment" nzTheme="outline">
-        {{ course.comment }}
-      </span>
-    </ng-template>
-    <ng-template #actionEdit>
-      <span [style.color]="course.isFree ? '#43bc60' : '#ed3e3e'">
-        {{ course.isFree ? "免費" : course.price + " 元" }}
-      </span>
-    </ng-template>
+    <app-card
+      [courseObj]="course"
+      (messageEvent)="getMessage($event)"
+      #card
+    ></app-card>
     }
   </div>
+
+  <p>管道 {{ "pipe" | uppercase }} {{ "PIPE" | lowercase }}</p>
+  <p>{{ 240 | count : "收費" }}</p>
 </div>
